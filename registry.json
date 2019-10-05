@@ -1,0 +1,7 @@
+{
+  "auths": {
+    "docker-registry.default.svc:5000": {
+      "auth": "dXNlcjo3aXpsakM3REthRUpDaEpUaTVZUU1lNm9YSmpHMnZIOUZ2ektVV0VmWTFn"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+//
+// Theme Fonts
+//
+
+// TODO: Update portal to use the same font as the site
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400|Roboto');
+
+//
+// Fonts Palettes
+//
+
+$fonts: (
+  header: #{"Roboto, sans-serif"},
+  body: #{"Roboto, sans-serif"}
+);
+
+//
+// Font Mapping Extractor
+// Gets the font from the theme fonts.
+// @use theme-font( font );
+//
+@function theme-font($font) {
+  @return map-get($fonts, $font);
+}
