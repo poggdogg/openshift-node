@@ -8,9 +8,12 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN npm install @angular/cli -g --silent
-RUN npm install
-RUN ng build --prod
+RUN npm audit fix && \
+    npm install @angular/cli -g --silent && \
+    npm install --silent && \
+    ng config -g cli.warnings.versionMismatch false && \
+    ng build --prod
+    
 
 FROM nginx
 
