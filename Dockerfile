@@ -4,15 +4,15 @@ FROM node:10.16 as build-deps
 # set working directory
 ENV NODE_ROOT /usr/src/app
 RUN mkdir -p /usr/src/app
-RUN npm audit fix
+
 WORKDIR /usr/src/app
 
 COPY . .
-
-RUN npm install @angular/cli -g --silent && \
-    npm install --silent && \
-    ng config -g cli.warnings.versionMismatch false && \
-    ng build --prod
+RUN npm audit fix
+RUN npm install @angular/cli -g --silent
+RUN npm install --silent
+RUN ng config -g cli.warnings.versionMismatch false
+RUN ng build --prod
 
 FROM nginx
 
