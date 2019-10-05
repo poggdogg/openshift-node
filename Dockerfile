@@ -9,11 +9,11 @@ WORKDIR /usr/src/app
 COPY . .
 
 RUN npm audit fix && \
+    ng config -g cli.warnings.versionMismatch false && \
     npm install @angular/cli -g --silent && \
     npm install --silent && \
     ng config -g cli.warnings.versionMismatch false && \
     ng build --prod
-    
 
 FROM nginx
 
