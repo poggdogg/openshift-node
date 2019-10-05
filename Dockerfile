@@ -8,9 +8,10 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY . .
-RUN npm audit fix
+
 RUN npm install @angular/cli -g --silent
 RUN npm install --silent
+RUN npm audit fix
 RUN ng config -g cli.warnings.versionMismatch false
 RUN ng build --prod
 
