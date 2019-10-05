@@ -11,10 +11,9 @@ COPY . .
 
 RUN npm install @angular/cli -g --silent
 RUN npm install --silent
-RUN npm audit fix
 RUN ng config -g cli.warnings.versionMismatch false
 RUN ng build --prod
-
+RUN npm audit fix
 FROM nginx
 
 #FROM registry.hub.docker.com/nginx:1.15-alpine
