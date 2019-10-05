@@ -1,5 +1,5 @@
 # base image
-FROM registry.hub.docker.com/node:10.16 as build-deps
+FROM node:10.16 as build-deps
 
 # set working directory
 ENV NODE_ROOT /usr/src/app
@@ -12,9 +12,9 @@ RUN npm install @angular/cli -g --silent
 RUN npm install
 RUN ng build --prod
 
-FROM registry.hub.docker.com/nginx
+FROM nginx
 
-FROM registry.hub.docker.com/nginx:1.15-alpine
+#FROM registry.hub.docker.com/nginx:1.15-alpine
 COPY --from=build-deps /usr/src/app/dist/angular-frontend /usr/share/nginx/html
 
 RUN rm /etc/nginx/conf.d/default.conf
