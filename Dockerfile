@@ -18,10 +18,9 @@ FROM nginx
 
 #FROM registry.hub.docker.com/nginx:1.15-alpine
 COPY --from=build-deps /usr/src/app/dist/angular-frontend /usr/share/nginx/html
-
-RUN rm /etc/nginx/conf.d/default.conf
+RUN rm -f /etc/nginx/conf.d/default.conf
 COPY --from=build-deps /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
-USER 1001
+
 CMD ["nginx", "-g", "daemon off;"]
