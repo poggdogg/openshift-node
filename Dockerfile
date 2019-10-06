@@ -5,7 +5,7 @@ USER 0
 ENV NODE_ROOT /usr/src/app
 RUN mkdir -p /usr/src/app
 RUN chmod -R 766 /usr/src/app
-RUN chown -R 101:101 /usr/src/app
+RUN chown -R nobody:nobody /usr/src/app
 RUN mkdir -p /var/cache/
 
 WORKDIR /usr/src/app
@@ -25,7 +25,7 @@ COPY --from=build-deps /usr/src/app/dist/angular-frontend /usr/share/nginx/html
 RUN rm -f /etc/nginx/conf.d/default.conf
 COPY --from=build-deps /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
 RUN chmod -R 777 /var/cache/
-RUN chown -R 101:101 /var/cache
+RUN chown -R nobody:nobody /var/cache
 EXPOSE 80
 USER 101
 CMD ["nginx", "-g", "daemon off;"]
