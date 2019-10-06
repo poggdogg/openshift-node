@@ -5,7 +5,7 @@ USER 0
 ENV NODE_ROOT /usr/src/app
 RUN mkdir -p /usr/src/app
 RUN chmod -R 766 /usr/src/app
-RUN chown -R nginx:nginx /usr/src/app
+RUN chown -R 101:101 /usr/src/app
 RUN mkdir -p /var/cache/
 
 WORKDIR /usr/src/app
