@@ -25,7 +25,7 @@ COPY --from=build-deps /usr/src/app/dist/angular-frontend /usr/share/nginx/html
 RUN rm -f /etc/nginx/conf.d/default.conf
 COPY --from=build-deps /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
 RUN chmod -R 777 /var/cache/
-RUN chown -R nginx:nginx /var/cache
+RUN chown -R 101:101 /var/cache
 EXPOSE 80
 USER 101
 CMD ["nginx", "-g", "daemon off;"]
