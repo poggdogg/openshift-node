@@ -21,7 +21,7 @@ COPY --from=build-deps /usr/src/app/dist/angular-frontend /usr/share/nginx/html
 
 RUN rm /etc/nginx/conf.d/default.conf
 COPY --from=build-deps /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
-USER 1001
-EXPOSE 80
 
+EXPOSE 80
+USER 1001
 CMD ["nginx", "-g", "daemon off;"]
