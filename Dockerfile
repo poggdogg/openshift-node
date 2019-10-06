@@ -7,8 +7,7 @@ RUN mkdir -p /usr/src/app
 RUN chmod -R 766 /usr/src/app
 RUN chown -R nginx:nginx /usr/src/app
 RUN mkdir -p /var/cache/
-RUN chmod -R 777 /var/cache/
-RUN chown -R nginx:nginx /var/cache
+
 WORKDIR /usr/src/app
 
 COPY . /usr/src/app
@@ -25,7 +24,8 @@ FROM nginx
 COPY --from=build-deps /usr/src/app/dist/angular-frontend /usr/share/nginx/html
 RUN rm -f /etc/nginx/conf.d/default.conf
 COPY --from=build-deps /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
-
+RUN chmod -R 777 /var/cache/
+RUN chown -R nginx:nginx /var/cache
 EXPOSE 80
 USER 101
 CMD ["nginx", "-g", "daemon off;"]
