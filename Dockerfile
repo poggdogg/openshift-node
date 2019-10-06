@@ -4,10 +4,10 @@ USER 0
 # set working directory
 ENV NODE_ROOT /usr/src/app
 RUN mkdir -p /usr/src/app
-
+RUN chmod -R 766 /usr/src/app
 WORKDIR /usr/src/app
 
-COPY . .
+COPY . /usr/src/app
 
 RUN npm install @angular/cli -g --silent
 RUN npm install --silent

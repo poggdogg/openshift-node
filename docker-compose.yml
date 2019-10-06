@@ -4,12 +4,10 @@ services:
   nginx-angular:
     container_name: primeweb
     build:
-        context: prime-angular-frontend/
+        context: .
     command: "nginx -g 'daemon off;'"
     restart: always
     ports:
       - "80:80"
     expose:
       - "80"
-    networks:
-      - primenet
