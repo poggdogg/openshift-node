@@ -5,9 +5,10 @@ USER 0
 ENV NODE_ROOT /usr/src/app
 RUN mkdir -p /usr/src/app
 RUN chmod -R 766 /usr/src/app
+RUN chown -R nginx:nginx /usr/src/app
 RUN mkdir -p /var/cache/
 RUN chmod -R 777 /var/cache/
-
+RUN chown -R nginx:nginx /var/cache
 WORKDIR /usr/src/app
 
 COPY . /usr/src/app
@@ -26,5 +27,5 @@ RUN rm -f /etc/nginx/conf.d/default.conf
 COPY --from=build-deps /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
-
+USER 101
 CMD ["nginx", "-g", "daemon off;"]
