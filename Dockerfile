@@ -5,8 +5,8 @@ USER 0
 ENV NODE_ROOT /usr/src/app
 RUN mkdir -p /usr/src/app
 RUN chmod -R 766 /usr/src/app
-RUN mkdir -p /var/cache/nginx
-RUN chmod -R 766 /var/cache/nginx
+RUN mkdir -p /var/cache/
+RUN chmod -R 777 /var/cache/
 
 WORKDIR /usr/src/app
 
