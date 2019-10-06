@@ -1,6 +1,6 @@
 # base image
 FROM node:10.16 as build-deps
-
+USER 0
 # set working directory
 ENV NODE_ROOT /usr/src/app
 RUN mkdir -p /usr/src/app
@@ -21,7 +21,7 @@ COPY --from=build-deps /usr/src/app/dist/angular-frontend /usr/share/nginx/html
 
 RUN rm /etc/nginx/conf.d/default.conf
 COPY --from=build-deps /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
-
+USER 1001
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
