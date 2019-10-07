@@ -1,5 +1,5 @@
 # base image
-FROM node:10.16 as build-deps
+FROM registry.connect.redhat.com/bitnami/nodejs:10.16 as build-deps
 USER 0
 # set working directory
 ENV NODE_ROOT /usr/src/app
@@ -18,8 +18,8 @@ RUN npm install @angular/cli -g --silent ; \
     ng build --prod ; \
     npm audit fix ; \
     chmod -R 0766 /usr
-FROM nginx
-
+FROM registry.redhat.io/rhel8/nginx-114
+USER 0
 #FROM registry.hub.docker.com/nginx:1.15-alpine
 COPY --from=build-deps /usr/src/app/dist/angular-frontend /usr/share/nginx/html
 RUN rm -f /etc/nginx/conf.d/default.conf
