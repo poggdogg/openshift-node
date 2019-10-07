@@ -18,7 +18,7 @@ RUN npm install @angular/cli -g --silent ; \
     ng build --prod ; \
     npm audit fix ; \
     chmod -R 0766 /usr
-FROM registry.redhat.io/rhel8/nginx-114
+FROM registry.redhat.io/rhoar-nodejs/nodejs-10
 USER 0
 #FROM registry.hub.docker.com/nginx:1.15-alpine
 COPY --from=build-deps /usr/src/app/dist/angular-frontend /usr/share/nginx/html
