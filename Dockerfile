@@ -1,5 +1,5 @@
 # base image
-FROM registry.connect.redhat.com/bitnami/nodejs:10.16 as build-deps
+FROM registry.redhat.io/rhoar-nodejs/nodejs-10
 USER 0
 # set working directory
 ENV NODE_ROOT /usr/src/app
