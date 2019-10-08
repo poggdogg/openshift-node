@@ -15,6 +15,7 @@ RUN ng build --prod
 FROM nginx
 
 FROM nginx:1.15-alpine
+USER 0
 COPY --from=build-deps /opt/app-root/src/dist/angular-frontend /usr/share/nginx/html
 
 RUN rm -f /etc/nginx/conf.d/default.conf
