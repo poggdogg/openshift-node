@@ -19,6 +19,7 @@ COPY --from=build-deps /opt/app-root/src/dist/angular-frontend /usr/share/nginx/
 
 RUN rm -f /etc/nginx/conf.d/default.conf
 COPY --from=build-deps /opt/app-root/src/nginx.conf /etc/nginx/conf.d/default.conf
+RUN chmod -R 777 /opt/app-root/src
 RUN chmod -R 777 /var/cache/
 RUN chown -R 1000:1000 /var/cache
 EXPOSE 80
