@@ -13,15 +13,15 @@ RUN npm install
 RUN ng build --prod
 
 FROM nginx:1.15-alpine
-COPY --from=build-deps /usr/src/appdist/angular-frontend /usr/share/nginx/html
+COPY --from=build-deps /usr/src/app/dist/angular-frontend /usr/share/nginx/html
 RUN rm -f /etc/nginx/conf.d/default.conf
-COPY --from=build-deps /usr/src/appnginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build-deps /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
 USER 0
 RUN mkdir -p /var/cache/nginx
 RUN mkdir -p /var/cache/nginx/client_temp
 RUN chown -R 1000:1000 /var/cache/nginx
-RUN chmod -R 777 /usr/src/app
 RUN chmod -R 777 /var/cache/nginx
+RUN chmod -R 777 /usr/src/app
 RUN chown -R 1000:1000 /usr/src/app
 RUN ln -s /usr/src/app /opt/app-root/src/app
 RUN cp -R /usr/share/nginx/html /opt/app-root/src/nginx-start
