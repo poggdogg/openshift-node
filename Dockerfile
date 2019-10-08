@@ -3,9 +3,9 @@ FROM registry.redhat.io/rhoar-nodejs/nodejs-10 as build-deps
 USER 0
 # set working directory
 ENV NODE_ROOT /usr/src/app
-RUN mkdir -p /usr/src/app ; \
-RUN chmod -R 766 /usr/src/app ; \
-RUN chown -R 1000:1000  /usr/src/app ; \
+RUN mkdir -p /usr/src/app 
+RUN chmod -R 766 /usr/src/app 
+RUN chown -R 1000:1000  /usr/src/app 
 RUN mkdir -p /var/cache/
 
 WORKDIR /usr/src/app
