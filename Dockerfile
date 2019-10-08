@@ -15,14 +15,14 @@ RUN ng build --prod
 FROM nginx
 
 FROM nginx:1.15-alpine
-USER 0
 COPY --from=build-deps /opt/app-root/src/dist/angular-frontend /usr/share/nginx/html
-
 RUN rm -f /etc/nginx/conf.d/default.conf
 COPY --from=build-deps /opt/app-root/src/nginx.conf /etc/nginx/conf.d/default.conf
+USER 0
+RUN mkdir -p /var/cache/nginx
 RUN chmod -R 777 /opt/app-root/src
-RUN chmod -R 777 /var/cache/
-RUN chown -R 1000:1000 /var/cache
+RUN chmod -R 777 /var/cache/nginx
+RUN chown -R 1000:1000 /var/cache/nginx
 EXPOSE 80
 USER 1000 
 CMD ["nginx", "-g", "daemon off;"]
