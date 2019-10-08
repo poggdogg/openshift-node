@@ -5,7 +5,7 @@ FROM node:10.16 as build-deps
 ENV NODE_ROOT /opt/app-root/src
 RUN mkdir -p /opt/app-root/src
 WORKDIR /opt/app-root/src
-
+RUN echo `pwd`
 COPY . .
 
 RUN npm install @angular/cli -g --silent
