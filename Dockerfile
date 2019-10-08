@@ -11,7 +11,7 @@ RUN mkdir -p /var/cache/
 
 WORKDIR /usr/src/app
 
-COPY . /usr/src/app
+COPY . .
 
 RUN npm install @angular/cli -g --silent 
 RUN npm install --silent
