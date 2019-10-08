@@ -22,6 +22,7 @@ RUN chmod -R 0766 /usr
 #FROM registry.redhat.io/rhel8/nginx-114
 #FROM docker.io/nginx:1.15-alpine
 FROM nginx:1.15-alpine
+USER 0
 COPY --from=build-deps /usr/src/app/dist/angular-frontend /usr/share/nginx/html
 RUN rm -f /etc/nginx/conf.d/default.conf
 COPY --from=build-deps /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
