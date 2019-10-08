@@ -3,15 +3,15 @@
 FROM node:10.16 as build-deps
 USER 0
 # set working directory
-ENV NODE_ROOT /usr/src/app
-RUN mkdir -p /usr/src/app 
-RUN chmod -R 766 /usr/src/app 
-RUN chown -R 1000:1000  /usr/src/app 
+ENV NODE_ROOT /opt/app-root/src
+RUN mkdir -p $NODE_ROOT
+RUN chmod -R 766 $NODE_ROOT 
+RUN chown -R 1000:1000  $NODE_ROOT
 RUN mkdir -p /var/cache/
 
-WORKDIR /usr/src/app
+WORKDIR $NODE_ROOT
 
-COPY . .
+COPY . $NODE_ROOT
 
 RUN npm install @angular/cli -g --silent 
 RUN npm install --silent
@@ -23,9 +23,9 @@ RUN chmod -R 0766 /usr
 #FROM docker.io/nginx:1.15-alpine
 FROM nginx:1.15-alpine
 USER 0
-COPY --from=build-deps /usr/src/app/dist/angular-frontend /usr/share/nginx/html
+COPY --from=build-deps $NODE_ROOT/dist/angular-frontend /usr/share/nginx/html
 RUN rm -f /etc/nginx/conf.d/default.conf
-COPY --from=build-deps /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build-deps $NODE_ROOT/nginx.conf /etc/nginx/conf.d/default.conf
 RUN chmod -R 777 /var/cache/
 RUN chown -R 1000:1000 /var/cache
 EXPOSE 80
