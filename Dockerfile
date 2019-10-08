@@ -12,8 +12,6 @@ RUN npm install @angular/cli -g --silent
 RUN npm install
 RUN ng build --prod
 
-FROM nginx
-
 FROM nginx:1.15-alpine
 COPY --from=build-deps /usr/src/appdist/angular-frontend /usr/share/nginx/html
 RUN rm -f /etc/nginx/conf.d/default.conf
