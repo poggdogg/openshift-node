@@ -1,6 +1,6 @@
 # base image
 # FROM registry.redhat.io/rhoar-nodejs/nodejs-10 as build-deps
-FROM nodejs-10 as build-deps
+FROM node:10.16 as build-deps
 USER 0
 # set working directory
 ENV NODE_ROOT /usr/src/app
