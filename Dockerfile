@@ -21,10 +21,8 @@ RUN mkdir -p /var/cache/nginx
 RUN mkdir -p /var/cache/nginx/client_temp
 RUN chown -R 1000:1000 /var/cache/nginx
 RUN chmod -R 777 /var/cache/nginx
-RUN chmod -R 777 /usr/src/app
-RUN chown -R 1000:1000 /usr/src/app
-RUN ln -s /usr/src/app /opt/app-root/src/app
-RUN cp -R /usr/share/nginx/html /opt/app-root/src/nginx-start
+# RUN ln -s /usr/src/app /opt/app-root/src/app
+# RUN cp -R /usr/share/nginx/html /opt/app-root/src/nginx-start
 
 EXPOSE 80
 USER 1000 
