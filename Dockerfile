@@ -24,6 +24,6 @@ RUN chmod -R 777 /var/cache/nginx
 # RUN ln -s /usr/src/app /opt/app-root/src/app
 # RUN cp -R /usr/share/nginx/html /opt/app-root/src/nginx-start
 
-EXPOSE 80
+EXPOSE 8080
 USER 1000 
 CMD ["nginx", "-g", "daemon off;"]
