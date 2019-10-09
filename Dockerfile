@@ -21,9 +21,10 @@ RUN mkdir -p /var/cache/nginx
 RUN mkdir -p /var/cache/nginx/client_temp
 RUN chown -R 1000:1000 /var/cache/nginx
 RUN chmod -R 777 /var/cache/nginx
+RUN chmod -R 777 /var/run
 # RUN ln -s /usr/src/app /opt/app-root/src/app
 # RUN cp -R /usr/share/nginx/html /opt/app-root/src/nginx-start
 
 EXPOSE 8080
-USER 1000 
+#USER 1000 
 CMD ["nginx", "-g", "daemon off;"]
